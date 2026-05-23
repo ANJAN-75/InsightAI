@@ -32,9 +32,9 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre("save", async function (next) {
  try{
-     if (!this.isModified("password")) return next();
+     if (!this.isModified("password")) return ;
   this.password = await bcrypt.hash(this.password, 10);
-  next();
+  
  }catch(error){
     next(error)
  }
@@ -44,7 +44,7 @@ userSchema.methods.comparePassword=function(candidatepassword){
     return bcrypt.compare(candidatepassword,this.password)
 }
 
-UserModel=mongoose.modelNamesodel("user",userSchema)
+const UserModel=mongoose.model("user",userSchema)
 
 
 export default UserModel

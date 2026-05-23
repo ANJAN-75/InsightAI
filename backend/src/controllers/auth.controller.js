@@ -1,11 +1,12 @@
-import UserModel from "../models/user.model"
+import UserModel from "../models/user.model.js"
 import jwt from "jsonwebtoken"
 import {sendEmail} from "../services/mail.service.js"
 
 const registerController=async(req,res)=>{
-    const {username,email,passsword}
+    const {username,email,password}=req.body
+    console.log(req.body)
     const isUserAlreadyExists=await UserModel.findOne({
-        $or:[{username},{passsword}]
+        $or:[{username},{email}]
     })
 
     if(isUserAlreadyExists){
@@ -15,7 +16,7 @@ const registerController=async(req,res)=>{
             err:"user already exist"
         })
     }
-    const user= await UserModel.create({username,email,passsword})
+    const user= await UserModel.create({username,email,password})
 
     const emailVerificationToken =jwt.sign(
         {email:user.email},

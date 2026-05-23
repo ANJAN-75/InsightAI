@@ -3,7 +3,7 @@ import { registerValidator } from "../validators/auth.validator.js"
 import registerController from "../controllers/auth.controller.js"
 
 
-const Authroute=express.Router()
+export const Authroute=express.Router()
 
 //Register route
 //  /api/auth/register
