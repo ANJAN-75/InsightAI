@@ -132,6 +132,11 @@ export const verifyEmailController = async (req, res) => {
       success: false,
     });
   }
+  if(user.Verified){
+    return res.send(`
+      <h1>Already verified</h1>
+      `)
+  }
   user.Verified = true;
   await user.save();
 
