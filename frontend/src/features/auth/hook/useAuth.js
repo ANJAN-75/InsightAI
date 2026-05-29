@@ -31,7 +31,8 @@ export const useAuth = () => {
   const handlegetMe = async () => {
     try {
       dispatch(setLoading(true));
-      const data = await getMe();
+      const data = await getme();
+      console.log(data+"getme")
       dispatch(setUser(data.user));
     } catch (err) {
       dispatch(

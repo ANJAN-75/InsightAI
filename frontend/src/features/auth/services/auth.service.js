@@ -23,7 +23,7 @@ export const login=async({email,password})=>{
 }
 
 export const getme=async()=>{
-    const response=await api.get("/api/auth/getme")
+    const response=await api.get("/api/auth/get-me")
     return response.data
 }
 

@@ -93,9 +93,9 @@ export const loginController = async (req, res) => {
 };
 //get-me controller
 export const getmeController = async (req, res) => {
-  const userID = req.decoded.id;
+  const userID = req.user.id;
 
-  const user = UserModel.findById(userID).select("-password");
+  const user =await UserModel.findById(userID).select("-password");
 
   if (!user) {
     return res.status(404).json({
