@@ -80,7 +80,7 @@ export const loginController = async (req, res) => {
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_TOKEN);
 
-  res.cookies("token", token);
+  res.cookie("token", token);
 
   res.status(200).json({
     message: "user login sucessfully",
@@ -143,7 +143,7 @@ export const verifyEmailController = async (req, res) => {
   const html = `
         <h1>Email Verified Successfully!</h1>
         <p>Your email has been verified. You can now log in to your account.</p>
-        <a href="http://localhost:3000/login">Go to Login</a>
+        <a href="http://localhost:5173/login">Go to Login</a>
     `;
   return res.send(html);
 };

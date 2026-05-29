@@ -1,7 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hook/useAuth.js";
 const Register = () => {
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const{ handleRegister} =useAuth()
+  const Navigate=useNavigate()
+  const handleSubmit=async(e)=>{
+     e.preventDefault()
+    const payload={
+      username,
+      email,
+      password
+    }
+     await handleRegister(payload)
+     console.log("form submited")
+   
+  }
+
   return (
     <main className="relative bg-zinc-950 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] bg-cyan-500 opacity-20 blur-[140px] rounded-full"></div>
@@ -11,7 +30,8 @@ const Register = () => {
         <h2 className="text-gray-300 text-3xl text-center font-bold ">
           Start your journey with a free account.
         </h2>
-        <div
+        <form
+          onSubmit={handleSubmit}
           className="form-container text-gray-300 flex flex-col gap-4   w-[400px] rounded-2xl 
                   bg-white/10 
                   backdrop-blur-lg 
@@ -21,16 +41,28 @@ const Register = () => {
           <input
             className="p-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:border-cyan-400 transition-all"
             type="text"
+            value={username}
+            onChange={(e)=>{
+              setUsername(e.target.value)
+            }}
             placeholder="Enter your username"
           />
           <input
             className="p-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:border-cyan-400 transition-all"
             type="email"
-            placeholder="Enter your email"
+            value={email}
+            onChange={(e)=>{
+             setEmail( e.target.value)
+            }}
+            placeholder="you@example.com"
           />
           <input
             className="p-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:border-cyan-400 transition-all"
             type="password"
+            value={password}
+            onChange={(e)=>{
+              setPassword(e.target.value)
+            }}
             placeholder="Enter your password"
           />
           <button className="p-3 text-lg font-bold text-zinc-950 rounded-lg bg-[#31b8c6] cursor-pointer hover:scale-[1.02] transition-all">
@@ -45,7 +77,7 @@ const Register = () => {
               Login
             </Link>
           </p>
-        </div>
+        </form>
       </div>
     </main>
   );

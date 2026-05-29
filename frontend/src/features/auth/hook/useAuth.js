@@ -7,7 +7,7 @@ export const useAuth = () => {
   const handleRegister = async ({ username, email, password }) => {
     try {
       dispatch(setLoading(true));
-      const data = await register({ username, email, pasword });
+      const data = await register({ username, email, password });
     } catch (error) {
       dispatch(
         setError(error.response?.data?.message || "registration failed"),
@@ -20,7 +20,7 @@ export const useAuth = () => {
   const handleLogin = async ({ email, password }) => {
     try {
       dispatch(setLoading(true));
-      const data = await register({ email, password });
+      const data = await login({ email, password });
       dispatch(setUser(data.user));
     } catch (error) {
       dispatch(setError(error.response?.data?.message || "login failed"));
@@ -41,4 +41,9 @@ export const useAuth = () => {
       dispatch(setLoading(false));
     }
   };
+  return {
+    handleRegister,
+    handleLogin,
+    handlegetMe
+  }
 };
