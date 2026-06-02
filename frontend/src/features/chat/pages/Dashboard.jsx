@@ -1,13 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import { ArrowUp, Paperclip } from "lucide-react";
+import { useChat } from "../hook/useChat";
+import { useSelector } from "react-redux";
 const Dashboard = () => {
-  const chats = [
-    "Project Alpha Discussion",
-    "Code Optimization Tips",
-    "Creative Writing Prompt",
-    "UI Design Feedback",
-    "Market Analysis v2",
-  ];
+  const chat = useChat()
+  const [chatInput, setChatInput] = useState("")
+   const chats = useSelector((state) => state.chat.chats)
+   const currentChatId = useSelector((state) => state.chat.currentChatId)
 
   return (
     <div className="flex h-screen bg-zinc-950 text-white">
@@ -68,6 +67,10 @@ const Dashboard = () => {
                 {/* Input */}
                 <input
                   type="text"
+                  value={chatInput}
+                  onChange={(e)=>{
+                    setChatInput(e.target.value)
+                  }}
                   placeholder="Message InsightAI..."
                   className="flex-1 bg-transparent outline-none px-4 text-white placeholder:text-zinc-500"
                 />

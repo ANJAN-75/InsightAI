@@ -13,7 +13,7 @@ export const sendMessage=async({message,chatID})=>{
        return response.data
 }
 
-export const getChat=async()=>{
+export const getChats=async()=>{
     const response=await api.get("/api/chat/")
 
     return response.data
