@@ -6,7 +6,7 @@ const api=axios.create({
 })
 
 export const sendMessage=async({message,chatID})=>{
-       const response=await api.post("/api/chat/messsage",{
+       const response=await api.post("/api/chat/message",{
         message,
         chatID
        }) 
@@ -15,12 +15,13 @@ export const sendMessage=async({message,chatID})=>{
 
 export const getChats=async()=>{
     const response=await api.get("/api/chat/")
-
+    console.log(response.data)
     return response.data
+    
 }
 
 export const getMessage=async(chatID)=>{
-    const response=await api.get(`/api/chat/${chatID}/message`)
+    const response=await api.get(`/api/chat/${chatID}/messages`)
 
     return response.data
 }

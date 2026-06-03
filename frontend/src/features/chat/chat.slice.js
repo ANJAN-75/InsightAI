@@ -29,7 +29,7 @@ const chatSlice=createSlice({
     setChats:(state,action)=>{
       state.chats=action.payload
     },
-    setCurrentChatId:(state,actions)=>{
+    setCurrentChatId:(state,action)=>{
       state.currentchatID=action.payload
     },
     setLoading: (state, action) => {

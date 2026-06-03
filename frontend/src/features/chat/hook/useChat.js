@@ -32,7 +32,7 @@ export const useChat = () => {
     }
     dispatch(
       addNewMessage({
-        chatId: chatID || chat._id,
+        chatID: chatID || chat._id,
         content: message,
         role: "user",
       }),
@@ -50,6 +50,7 @@ export const useChat = () => {
   const handleGetChats=async()=>{
     dispatch(setLoading(true))
     const data =await getChats()
+    console.log(data)
     const {chats}=data
      dispatch(setChats(chats.reduce((acc, chat) => {
             acc[ chat._id ] = {
@@ -67,7 +68,7 @@ export const useChat = () => {
         console.log(chats[ chatID ]?.messages.length)
 
         if (chats[ chatID ]?.messages.length === 0) {
-            const data = await getMessages(chatID)
+            const data = await getMessage(chatID)
             const { messages } = data
 
             const formattedMessages = messages.map(msg => ({
