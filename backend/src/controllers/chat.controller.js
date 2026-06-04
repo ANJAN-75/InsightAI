@@ -25,7 +25,7 @@ export const createChatController = async (req, res) => {
   });
 
   const messages = await MessageModel.find({ chat: chatID || chat._id });
-
+console.log("Messages count:", messages.length);
   const result = await generateMsgResponse(messages);
 
   const aiMessage = await MessageModel.create({

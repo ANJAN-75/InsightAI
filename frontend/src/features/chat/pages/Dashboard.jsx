@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ArrowUp, Paperclip } from "lucide-react";
 import { useChat } from "../hook/useChat";
 import { useSelector } from "react-redux";
+import ReactMarkdown from "react-markdown";
+
 const Dashboard = () => {
   const chat = useChat();
   const [chatInput, setChatInput] = useState("");
@@ -63,10 +65,13 @@ const Dashboard = () => {
                   className={`px-5 py-3 rounded-2xl max-w-[70%] overflow-hidden break-all whitespace-pre-wrap ${
                     message.role === "user"
                       ? "bg-zinc-800 rounded-br-none font-medium"
-                      : "bg-zinc-800 rounded-bl-none"
+                      : " rounded-bl-none"
                   }`}
                 >
+                  <ReactMarkdown>
                   {message.content}
+                  </ReactMarkdown>
+                  
                 </div>
               </div>
             ))}

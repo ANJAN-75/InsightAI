@@ -13,6 +13,7 @@
   "dependencies": {
     "@langchain/core": "^1.1.48",
     "@langchain/mistralai": "^1.1.0",
+    "@tavily/core": "^0.7.5",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
